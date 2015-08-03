@@ -22,9 +22,7 @@ import os
 jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('Hello world!')
+
 
 class Song(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -41,6 +39,13 @@ song1 = Song(name = "Headlines", artist = "Drake", genre =  "Hip-Hop", mood = "H
 song1.put()
 vid1 = Video(name = "Kittehs", author = "Mr. Meowgi", keyword = "Purr")
 vid1.put()
+
+class MainHandler(webapp2.RequestHandler):
+    def get(self):
+        # my_vars = {'song':song1}
+        main_page_template = jinja_environment.get_template('templates/home.html')
+        self.response.out.write(main_page_template.render())
+        # self.response.write('Hello world!')
 
 # class Video(self):
 #     def __init__(self, name, uploader):
