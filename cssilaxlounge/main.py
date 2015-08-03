@@ -42,10 +42,15 @@ vid1.put()
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        # my_vars = {'song':song1}
+        my_vars = {'song':song1}
         main_page_template = jinja_environment.get_template('templates/home.html')
-        self.response.out.write(main_page_template.render())
+        self.response.out.write(main_page_template.render(my_vars))
         # self.response.write('Hello world!')
+
+    def post(self):
+        mood = self.request.get('submit_button')
+
+
 
 # class Video(self):
 #     def __init__(self, name, uploader):
