@@ -43,7 +43,7 @@ vid1.put()
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         my_vars = {'song':song1}
-        main_page_template = jinja_environment.get_template('templates/home.html')
+        main_page_template = jinja_environment.get_template('templates/main.html')
         self.response.out.write(main_page_template.render(my_vars))
         # self.response.write('Hello world!')
 
@@ -51,7 +51,22 @@ class MainHandler(webapp2.RequestHandler):
         mood = self.request.get('mood') #recieves mood. Eventually will get mood and genre and use them to get items from datastore
 
 
+class HomeHandler(webapp2.RequestHandler):
+    def get(self):
+        home_page_template = jinja_environment.get_template('templates/home.html')
+        self.response.out.write(home_page_template.render())
 
+
+class VideoHandler(webapp2.RequestHandler):
+    def get(self):
+        video_page_template = jinja_environment.get_template('templates/video.html')
+        self.response.out.write(video_page_template.render())
+
+
+class MusicHandler(webapp2.RequestHandler):
+    def get(self):
+        music_page_template = jinja_environment.get_template('templates/music.html')
+        self.response.out.write(music_page_template.render())
 
 
 # class Video(self):
@@ -62,5 +77,8 @@ class MainHandler(webapp2.RequestHandler):
 # video1 = Video("Hi", "Me")
 # print video1.name
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
-], debug=True)
+    ('/', MainHandler),
+    ('/home', HomeHandler),
+    ('/music', MusicHandler),
+    ('/video', VideoHandler)
+], debug=True) #DON'T FORGET TO SWITCH TO FALSE AT THE END
