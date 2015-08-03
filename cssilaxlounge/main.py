@@ -27,23 +27,26 @@ jinja_environment = jinja2.Environment(
 class Song(ndb.Model):
     name = ndb.StringProperty(required = True)
     artist = ndb.StringProperty(required = True)
-    genre = ndb.StringProperty(required = True, repeated = True)
-    mood = ndb.StringProperty(required = True, repeated = True)
+    genre = ndb.StringProperty(required = True)
+    mood = ndb.StringProperty(required = True)
 
 class Video(ndb.Model):
     name = ndb.StringProperty(required = True)
     author = ndb.StringProperty(required = True)
     keyword = ndb.StringProperty(required = True)
 
-# song1 = Song(name = "Headlines", artist = "Drake", genre =  "Hip-Hop", mood = "Happy")
-# song1.put()
-# vid1 = Video(name = "Kittehs", author = "Mr. Meowgi", keyword = "Purr")
-# vid1.put()
-
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_environment.get_template('templates/main.html')
-        self.response.out.write(main_page_template.render(my_vars))
+        self.response.out.write(main_page_template.render())
+        # song1 = Song(name = "Headlines",artist =  "Drake", genre = "Hip-Hop", mood = "Happy")
+        # song2 = Song(name = "Crooked Young", artist = "Bring me the Horizon", genre = "Punk", mood = "Angry")
+        # song3 = Song(name = "Forever Young", artist = "Jay-Z", genre = "Hip-Hop", mood = "Chilled")
+        # song4 = Song(name = "Terrible Things", artist = "Mayday Parade", genre = "Punk", mood = "Sad")
+        # song1.put()
+        # song2.put()
+        # song3.put()
+        # song4.put()
         # self.response.write('Hello world!')
 
     def post(self):
