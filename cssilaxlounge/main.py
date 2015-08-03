@@ -27,8 +27,8 @@ jinja_environment = jinja2.Environment(
 class Song(ndb.Model):
     name = ndb.StringProperty(required = True)
     artist = ndb.StringProperty(required = True)
-    genre = ndb.StringProperty(required = True)
-    mood = ndb.StringProperty(required = True)
+    genre = ndb.StringProperty(repeated = True)
+    mood = ndb.StringProperty(repeated = True)
 
 class Video(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -39,15 +39,14 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_environment.get_template('templates/main.html')
         self.response.out.write(main_page_template.render())
-        # song1 = Song(name = "Headlines",artist =  "Drake", genre = "Hip-Hop", mood = "Happy")
-        # song2 = Song(name = "Crooked Young", artist = "Bring me the Horizon", genre = "Punk", mood = "Angry")
-        # song3 = Song(name = "Forever Young", artist = "Jay-Z", genre = "Hip-Hop", mood = "Chilled")
-        # song4 = Song(name = "Terrible Things", artist = "Mayday Parade", genre = "Punk", mood = "Sad")
+        # song1 = Song(name = "Headlines",artist =  "Drake", genre = ["Hip-Hop"], mood = ["Happy"])
+        # song2 = Song(name = "Crooked Young", artist = "Bring me the Horizon", genre = ["Punk"], mood = ["Angry"])
+        # song3 = Song(name = "Forever Young", artist = "Jay-Z", genre = ["Hip-Hop"], mood = ["Chilled"])
+        # song4 = Song(name = "Terrible Things", artist = "Mayday Parade", genre = ["Punk"], mood = ["Sad"])
         # song1.put()
         # song2.put()
         # song3.put()
         # song4.put()
-        # self.response.write('Hello world!')
 
     def post(self):
         mood = self.request.get('mood') #recieves mood. Eventually will get mood and genre and use them to get items from datastore
@@ -69,9 +68,20 @@ class MusicHandler(webapp2.RequestHandler):
     def get(self):
         music_page_template = jinja_environment.get_template('templates/music.html')
         self.response.out.write(music_page_template.render())
-    def post(self):
+        # mood = "Chilled"
+        # genre = "Hip-Hop"
         mood = self.request.get('mood')
         genre = self.request.get('genre')
+        filtered_answer = Song.query().filter(Song.genre == genre and Song.mood == mood).fetch()
+        if filtered_answer:
+            for song in filtered_answer:
+                self.response.write(song.name)
+        else:
+            self.response.write("Nope")
+    # def post(self):
+        # mood = self.request.get('mood')
+        # genre = self.request.get('genre')
+
 
 # class Video(self):
 #     def __init__(self, name, uploader):
