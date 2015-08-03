@@ -15,11 +15,40 @@
 # limitations under the License.
 #
 import webapp2
+from google.appengine.ext import ndb
+import jinja2
+import os
+
+jinja_environment = jinja2.Environment(
+  loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello world!')
 
+class Song(ndb.Model):
+    name = ndb.StringProperty(required = True)
+    artist = ndb.StringProperty(required = True)
+    genre = ndb.StringProperty(required = True)
+    mood = ndb.StringProperty(required = True)
+
+class Video(ndb.Model):
+    name = ndb.StringProperty(required = True)
+    author = ndb.StringProperty(required = True)
+    keyword = ndb.StringProperty(required = True)
+
+song1 = Song(name = "Headlines", artist = "Drake", genre =  "Hip-Hop", mood = "Happy")
+song1.put()
+vid1 = Video(name = "Kittehs", author = "Mr. Meowgi", keyword = "Purr")
+vid1.put()
+
+# class Video(self):
+#     def __init__(self, name, uploader):
+#         self.name = name
+#         self.uploader = uploader
+#
+# video1 = Video("Hi", "Me")
+# print video1.name
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
