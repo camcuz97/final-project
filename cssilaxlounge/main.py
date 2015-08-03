@@ -48,7 +48,9 @@ class MainHandler(webapp2.RequestHandler):
         # self.response.write('Hello world!')
 
     def post(self):
-        mood = self.request.get('submit_button')
+        mood = self.request.get('mood') #recieves mood. Eventually will get mood and genre and use them to get items from datastore
+
+
 
 
 
