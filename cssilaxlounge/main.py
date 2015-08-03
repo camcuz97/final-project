@@ -27,22 +27,21 @@ jinja_environment = jinja2.Environment(
 class Song(ndb.Model):
     name = ndb.StringProperty(required = True)
     artist = ndb.StringProperty(required = True)
-    genre = ndb.StringProperty(required = True)
-    mood = ndb.StringProperty(required = True)
+    genre = ndb.StringProperty(required = True, repeated = True)
+    mood = ndb.StringProperty(required = True, repeated = True)
 
 class Video(ndb.Model):
     name = ndb.StringProperty(required = True)
     author = ndb.StringProperty(required = True)
     keyword = ndb.StringProperty(required = True)
 
-song1 = Song(name = "Headlines", artist = "Drake", genre =  "Hip-Hop", mood = "Happy")
-song1.put()
-vid1 = Video(name = "Kittehs", author = "Mr. Meowgi", keyword = "Purr")
-vid1.put()
+# song1 = Song(name = "Headlines", artist = "Drake", genre =  "Hip-Hop", mood = "Happy")
+# song1.put()
+# vid1 = Video(name = "Kittehs", author = "Mr. Meowgi", keyword = "Purr")
+# vid1.put()
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        my_vars = {'song':song1}
         main_page_template = jinja_environment.get_template('templates/main.html')
         self.response.out.write(main_page_template.render(my_vars))
         # self.response.write('Hello world!')
@@ -67,7 +66,9 @@ class MusicHandler(webapp2.RequestHandler):
     def get(self):
         music_page_template = jinja_environment.get_template('templates/music.html')
         self.response.out.write(music_page_template.render())
-
+    def post(self):
+        mood = self.request.get('mood')
+        genre = self.request.get('genre')
 
 # class Video(self):
 #     def __init__(self, name, uploader):
