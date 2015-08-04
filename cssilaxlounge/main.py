@@ -18,11 +18,13 @@ import webapp2
 from google.appengine.ext import ndb
 import jinja2
 import os
+from google.appengine.api import users
 
 jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-
+class UserModel(ndb.Model):
+    currentUser = ndb.StringProperty(required = True)
 
 class Song(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -37,8 +39,13 @@ class Video(ndb.Model):
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        main_page_template = jinja_environment.get_template('templates/main.html')
-        self.response.out.write(main_page_template.render())
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
+        else:
+            self.response.write(user)
+            main_page_template = jinja_environment.get_template('templates/main.html')
+            self.response.out.write(main_page_template.render())
         # song1 = Song(name = "Headlines",artist =  "Drake", genre = ["Hip-Hop"], mood = ["Happy"])
         # song2 = Song(name = "Crooked Young", artist = "Bring me the Horizon", genre = ["Punk"], mood = ["Angry"])
         # song3 = Song(name = "Forever Young", artist = "Jay-Z", genre = ["Hip-Hop"], mood = ["Chilled"])
