@@ -18,31 +18,59 @@ import webapp2
 from google.appengine.ext import ndb
 import jinja2
 import os
+import logging
 
 jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
+class Artist(ndb.Model):
+    name = ndb.StringProperty(required = True)
+
+class Genre(ndb.Model):
+    name = ndb.StringProperty(required = True)
+
 
 class Song(ndb.Model):
     name = ndb.StringProperty(required = True)
-    artist = ndb.StringProperty(required = True)
-    genre = ndb.StringProperty(repeated = True)
+    artist = ndb.KeyProperty(Artist, required = True)
+    genre = ndb.KeyProperty(Genre, repeated = True)
     mood = ndb.StringProperty(repeated = True)
+
+
+class Author(ndb.Model):
+    author = ndb.StringProperty(required = True)
+
+class Keyword(ndb.Model):
+    keyword = ndb.StringProperty(required = True)
+
 
 class Video(ndb.Model):
     name = ndb.StringProperty(required = True)
-    author = ndb.StringProperty(required = True)
-    keyword = ndb.StringProperty(required = True)
+    author = ndb.KeyProperty(Author, required = True)
+    keyword = ndb.KeyProperty(Keyword, required = True)
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_environment.get_template('templates/main.html')
         self.response.out.write(main_page_template.render())
-        # song1 = Song(name = "Headlines",artist =  "Drake", genre = ["Hip-Hop"], mood = ["Happy"])
-        # song2 = Song(name = "Crooked Young", artist = "Bring me the Horizon", genre = ["Punk"], mood = ["Angry"])
-        # song3 = Song(name = "Forever Young", artist = "Jay-Z", genre = ["Hip-Hop"], mood = ["Chilled"])
-        # song4 = Song(name = "Terrible Things", artist = "Mayday Parade", genre = ["Punk"], mood = ["Sad"])
+        # artist1 = Artist(name = "Drake")
+        # artist1.put()
+        # artist2 = Artist(name = "Bring me the Horizon")
+        # artist2.put()
+        # artist3 = Artist(name = "Jay-Z")
+        # artist3.put()
+        # artist4 = Artist(name = "Mayday Parade")
+        # artist4.put()
+        # genre1 = Genre(name = "Hip-Hop")
+        # genre1.put()
+        # genre2 = Genre(name = "Punk")
+        # genre2.put()
+        # song1 = Song(name = "Headlines",artist = artist1.key , genre = [genre1.key], mood = ["Happy"])
+        # song2 = Song(name = "Crooked Young", artist = artist2.key, genre = [genre2.key], mood = ["Angry"])
+        # song3 = Song(name = "Forever Young", artist = artist3.key, genre = [genre1.key], mood = ["Chilled"])
+        # song4 = Song(name = "Terrible Things", artist = artist4.key, genre = [genre2.key], mood = ["Sad"])
         # song1.put()
         # song2.put()
         # song3.put()
@@ -72,7 +100,12 @@ class MusicHandler(webapp2.RequestHandler):
         # genre = "Hip-Hop"
         mood = self.request.get('mood')
         genre = self.request.get('genre')
-        filtered_answer = Song.query().filter(Song.genre == genre and Song.mood == mood).fetch()
+        genre_key = Genre.query(Genre.name == genre).get().key
+        logging.info("Geeeeenre:" + str(genre_key))
+        logging.info("Moooooood: " + mood)
+        filtered_answer = Song.query().filter(Song.genre == genre_key and Song.mood == mood).fetch()
+        logging.info("Answers: "  + str(filtered_answer))
+        # all_songs = Song.query().fetch()
         if filtered_answer:
             for song in filtered_answer:
                 self.response.write(song.name)
