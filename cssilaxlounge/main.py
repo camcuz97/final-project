@@ -45,12 +45,11 @@ class Song(ndb.Model):
 class Keyword(ndb.Model):
     name = ndb.StringProperty(required = True)
 
-
 class Video(ndb.Model):
     name = ndb.StringProperty(required = True)
     author = ndb.StringProperty()
     keyword = ndb.KeyProperty(Keyword, repeated = True)
-    corresponding_url = ndb.StringProperty(required = True)
+    corresponding_html = ndb.StringProperty(required = True)
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -66,13 +65,13 @@ class MainHandler(webapp2.RequestHandler):
         # keyword3.put()
         # keyword4 = Keyword(name = "educational")
         # keyword4.put()
-        # video1 = Video(name = "funny game show answers" , keyword = [keyword1.key], corresponding_url = "https://www.youtube.com/watch?v=R7ghDhpCLKM")
+        # video1 = Video(name = "funny game show answers" , keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R7ghDhpCLKM" frameborder="0" allowfullscreen></iframe>')
         # video1.put()
-        # video2 = Video(name = "intriguing fact about the human brain", keyword = [keyword2.key], corresponding_url = "https://www.youtube.com/watch?v=XQKDd_SjMJA")
+        # video2 = Video(name = "intriguing fact about the human brain", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/XQKDd_SjMJA" frameborder="0" allowfullscreen></iframe>')
         # video2.put()
-        # video3 = Video(name = "relaxing kaleidoscpoic images", keyword = [keyword3.key], corresponding_url = "https://www.youtube.com/watch?v=q2fIWB8o-bs")
+        # video3 = Video(name = "relaxing kaleidoscpoic images", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/q2fIWB8o-bs" frameborder="0" allowfullscreen></iframe>')
         # video3.put()
-        # video4 = Video(name = "educational video about technology and nature", keyword = [keyword4.key], corresponding_url = "https://www.youtube.com/watch?v=POsXsOY71W0")
+        # video4 = Video(name = "educational video about technology and nature", keyword = [keyword4.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/POsXsOY71W0" frameborder="0" allowfullscreen></iframe>')
         # video4.put()
 
 
@@ -128,7 +127,8 @@ class VideoHandler(webapp2.RequestHandler):
             if filtered_video_answer:
                 for video in filtered_video_answer:
                     self.response.write(video.name)
-                    self.response.write(video.corresponding_url)
+                    self.response.write("<br/>")
+                    self.response.write("%s"%video.corresponding_html)
             else:
                 self.response.write("No corresponding video")
 
