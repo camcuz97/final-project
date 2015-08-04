@@ -1,0 +1,69 @@
+body {
+  min-width: 500px;
+  text-align: center;
+  background: #00BFFF;
+}
+#top-head {
+  font-family: 'Droid Serif', serif;
+  font-size: 54px;
+  margin-top:35px;
+}
+#logo {
+  margin-left: -0%;
+  margin-top:-60px;
+}
+#logo2 {
+  margin-left: -70%;
+  margin-top:-60px;
+}
+.media_button {
+  margin-top: -100px;
+}
+#home_button, .media_button {
+  margin-top: -100px;
+  background: white;
+  background-image: -webkit-linear-gradient(top, white, grey);
+  background-image: -moz-linear-gradient(top, white, grey);
+  background-image: -ms-linear-gradient(top, white, grey);
+  background-image: -o-linear-gradient(top, white, grey);
+  background-image: linear-gradient(to bottom, white, grey);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: 'Droid Serif', serif;
+  color: black;
+  font-size: 22px;
+  padding: 5px 15px 5px 15px;
+  text-decoration: none;
+}
+
+#home_button:hover, .media_button:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+#home_button {
+  margin-left: 3%;
+  margin-top: -30px;
+}
+#path-options {
+  margin-left: auto;
+  margin-right: auto;
+}
+#button1 {
+  margin-top: 250px;
+  float: left;
+  margin-left:30%;
+}
+#button2 {
+  margin-top: 250px;
+  float: left;
+  margin-left:25%;
+}
+#button3 {
+  margin-top: 70px;
+}
