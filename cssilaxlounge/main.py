@@ -42,6 +42,14 @@ class Song(ndb.Model):
     mood = ndb.StringProperty(repeated = True)
     spotify_html = ndb.StringProperty(required = True)
 
+class Playlist(ndb.Model):
+    genre = ndb.KeyProperty(Genre, repeated = True)
+    mood = ndb.StringProperty(repeated = True)
+    spotify_html = ndb.StringProperty(required = True)
+
+class Author(ndb.Model):
+    author = ndb.StringProperty(required = True)
+
 class Keyword(ndb.Model):
     name = ndb.StringProperty(required = True)
 
@@ -55,7 +63,6 @@ class Video(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_environment.get_template('templates/main.html')
-        self.response.out.write(main_page_template.render())
 
         # keyword1 = Keyword(name = "funny")
         # keyword1.put()
@@ -102,10 +109,8 @@ class MainHandler(webapp2.RequestHandler):
         # song2.put()
         # song3.put()
         # song4.put()
-
-    # def post(self):
-    #     mood = self.request.get('mood') #recieves mood. Eventually will get mood and genre and use them to get items from datastore
-
+        # happy_punk = Playlist(genre = [genre2.key], mood = ["Happy"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify_france:playlist:5vUFrhjhYHJM1oAO50yLJS" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>')
+        # happy_punk.put()
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
@@ -140,19 +145,26 @@ class MusicHandler(webapp2.RequestHandler):
         # genre = "Hip-Hop"
         mood = self.request.get('mood')
         genre = self.request.get('genre')
-        if  genre and mood:
+        # if  genre and mood:
+        #     genre_key = Genre.query(Genre.name == genre).get().key
+        #     filtered_answer = Song.query().filter(Song.genre == genre_key and Song.mood == mood).fetch()
+        #     my_vars = {}
+        #     for song in filtered_answer:
+        #         my_vars[str(song.name)] = str(song.spotify_html)
+        #     logging.info(my_vars)
+        #     # all_songs = Song.query().fetch()
+        #     if filtered_answer:
+        #         for song in filtered_answer:
+        #             self.response.write('<p align = "center"> %s </p'%song.spotify_html)
+        #             #self.response.write(str(song.spotify_html) + "<br>")
+        #     else:
+        #         self.response.write("Nope")
+        if genre and mood:
             genre_key = Genre.query(Genre.name == genre).get().key
-            filtered_answer = Song.query().filter(Song.genre == genre_key and Song.mood == mood).fetch()
-            my_vars = {}
-            for song in filtered_answer:
-                my_vars[str(song.name)] = str(song.spotify_html)
-            logging.info(my_vars)
-            # all_songs = Song.query().fetch()
+            filtered_answer = Playlist.query().filter(Playlist.genre == genre_key and Playlist.mood == mood).fetch()
             if filtered_answer:
-                for song in filtered_answer:
-                    self.response.write(str(song.spotify_html) + "<br>")
-            else:
-                self.response.write("Nope")
+                for playlist in filtered_answer:
+                    self.response.write('<p align = "center"> %s </p'%playlist.spotify_html)
     # def post(self):
         # mood = self.request.get('mood')
         # genre = self.request.get('genre')
