@@ -40,6 +40,7 @@ class Song(ndb.Model):
     artist = ndb.KeyProperty(Artist, required = True)
     genre = ndb.KeyProperty(Genre, repeated = True)
     mood = ndb.StringProperty(repeated = True)
+    spotify_html = ndb.StringProperty(required = True)
 
 class Keyword(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -75,7 +76,13 @@ class MainHandler(webapp2.RequestHandler):
         # video4.put()
 
 
-
+        user = users.get_current_user()
+        my_vars = {'user': user}
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
+        else:
+            main_page_template = jinja_environment.get_template('templates/main.html')
+            self.response.out.write(main_page_template.render(my_vars))
         # artist1 = Artist(name = "Drake")
         # artist1.put()
         # artist2 = Artist(name = "Bring me the Horizon")
@@ -88,30 +95,14 @@ class MainHandler(webapp2.RequestHandler):
         # genre1.put()
         # genre2 = Genre(name = "Punk")
         # genre2.put()
-        # song1 = Song(name = "Headlines",artist = artist1.key , genre = [genre1.key], mood = ["Happy"])
-        # song2 = Song(name = "Crooked Young", artist = artist2.key, genre = [genre2.key], mood = ["Angry"])
-        # song3 = Song(name = "Forever Young", artist = artist3.key, genre = [genre1.key], mood = ["Chilled"])
-        # song4 = Song(name = "Terrible Things", artist = artist4.key, genre = [genre2.key], mood = ["Sad"])
+        # song1 = Song(name = "Headlines",artist = artist1.key , genre = [genre1.key], mood = ["Happy"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:track:3XWZ7PNB3ei50bTPzHhqA6" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>')
+        # song2 = Song(name = "Crooked Young", artist = artist2.key, genre = [genre2.key], mood = ["Angry"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:track:3XWZ7PNB3ei50bTPzHhqA6" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>')
+        # song3 = Song(name = "Forever Young", artist = artist3.key, genre = [genre1.key], mood = ["Chilled"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:track:3XWZ7PNB3ei50bTPzHhqA6" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>')
+        # song4 = Song(name = "Terrible Things", artist = artist4.key, genre = [genre2.key], mood = ["Sad"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:track:3XWZ7PNB3ei50bTPzHhqA6" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>')
         # song1.put()
         # song2.put()
         # song3.put()
         # song4.put()
-
-
-
-
-
-
-
-
-
-
-        user = users.get_current_user()
-        if not user:
-            self.redirect(users.create_login_url(self.request.uri))
-        else:
-            self.response.write(user)
-            main_page_template = jinja_environment.get_template('templates/main.html')
 
     # def post(self):
     #     mood = self.request.get('mood') #recieves mood. Eventually will get mood and genre and use them to get items from datastore
@@ -136,7 +127,7 @@ class VideoHandler(webapp2.RequestHandler):
             # all_songs = Song.query().fetch()
             if filtered_video_answer:
                 for video in filtered_video_answer:
-                    self.response.write(video.name) 
+                    self.response.write(video.name)
                     self.response.write(video.corresponding_url)
             else:
                 self.response.write("No corresponding video")
@@ -151,14 +142,15 @@ class MusicHandler(webapp2.RequestHandler):
         genre = self.request.get('genre')
         if  genre and mood:
             genre_key = Genre.query(Genre.name == genre).get().key
-            logging.info("Geeeeenre:" + str(genre_key))
-            logging.info("Moooooood: " + mood)
             filtered_answer = Song.query().filter(Song.genre == genre_key and Song.mood == mood).fetch()
-            logging.info("Answers: "  + str(filtered_answer))
+            my_vars = {}
+            for song in filtered_answer:
+                my_vars[str(song.name)] = str(song.spotify_html)
+            logging.info(my_vars)
             # all_songs = Song.query().fetch()
             if filtered_answer:
                 for song in filtered_answer:
-                    self.response.write(song.name)
+                    self.response.write(str(song.spotify_html) + "<br>")
             else:
                 self.response.write("Nope")
     # def post(self):
