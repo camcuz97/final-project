@@ -59,7 +59,13 @@ class Video(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_environment.get_template('templates/main.html')
-        self.response.out.write(main_page_template.render())
+        user = users.get_current_user()
+        my_vars = {'user': user}
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
+        else:
+            main_page_template = jinja_environment.get_template('templates/main.html')
+            self.response.out.write(main_page_template.render(my_vars))
         # artist1 = Artist(name = "Drake")
         # artist1.put()
         # artist2 = Artist(name = "Bring me the Horizon")
@@ -80,12 +86,8 @@ class MainHandler(webapp2.RequestHandler):
         # song2.put()
         # song3.put()
         # song4.put()
-        user = users.get_current_user()
-        if not user:
-            self.redirect(users.create_login_url(self.request.uri))
-        else:
-            self.response.write(user)
-            main_page_template = jinja_environment.get_template('templates/main.html')
+
+
 
     def post(self):
         mood = self.request.get('mood') #recieves mood. Eventually will get mood and genre and use them to get items from datastore
@@ -128,13 +130,6 @@ class MusicHandler(webapp2.RequestHandler):
         # genre = self.request.get('genre')
 
 
-# class Video(self):
-#     def __init__(self, name, uploader):
-#         self.name = name
-#         self.uploader = uploader
-#
-# video1 = Video("Hi", "Me")
-# print video1.name
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/home', HomeHandler),
