@@ -18,16 +18,13 @@ import webapp2
 from google.appengine.ext import ndb
 import jinja2
 import os
-<<<<<<< HEAD
 import logging
-=======
 from google.appengine.api import users
->>>>>>> d5656020635db6ecf4917b31d915595c2edcc5c8
+
 
 jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-<<<<<<< HEAD
 
 class Artist(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -35,10 +32,9 @@ class Artist(ndb.Model):
 class Genre(ndb.Model):
     name = ndb.StringProperty(required = True)
 
-=======
 class UserModel(ndb.Model):
     currentUser = ndb.StringProperty(required = True)
->>>>>>> d5656020635db6ecf4917b31d915595c2edcc5c8
+
 
 class Song(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -86,7 +82,7 @@ class MainHandler(webapp2.RequestHandler):
         else:
             self.response.write(user)
             main_page_template = jinja_environment.get_template('templates/main.html')
-            self.response.out.
+            self.response.out.write(main_page_template.render())
         # song1.put()
         # song2.put()
         # song3.put()
