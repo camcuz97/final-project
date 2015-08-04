@@ -164,7 +164,7 @@ class MusicHandler(webapp2.RequestHandler):
             filtered_answer = Playlist.query().filter(Playlist.genre == genre_key and Playlist.mood == mood).fetch()
             if filtered_answer:
                 for playlist in filtered_answer:
-                    self.response.write('<p align = "center"> %s </p'%playlist.spotify_html)
+                    self.response.write('<p align = "center">%s</p'%playlist.spotify_html)
     # def post(self):
         # mood = self.request.get('mood')
         # genre = self.request.get('genre')
