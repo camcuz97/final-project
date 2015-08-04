@@ -26,15 +26,14 @@ jinja_environment = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
+class UserModel(ndb.Model):
+    currentUser = ndb.StringProperty(required = True)
+
 class Artist(ndb.Model):
     name = ndb.StringProperty(required = True)
 
 class Genre(ndb.Model):
     name = ndb.StringProperty(required = True)
-
-class UserModel(ndb.Model):
-    currentUser = ndb.StringProperty(required = True)
-
 
 class Song(ndb.Model):
     name = ndb.StringProperty(required = True)
@@ -52,18 +51,39 @@ class Author(ndb.Model):
     author = ndb.StringProperty(required = True)
 
 class Keyword(ndb.Model):
-    keyword = ndb.StringProperty(required = True)
+    name = ndb.StringProperty(required = True)
 
 
 class Video(ndb.Model):
     name = ndb.StringProperty(required = True)
-    author = ndb.KeyProperty(Author, required = True)
-    keyword = ndb.KeyProperty(Keyword, required = True)
+    author = ndb.StringProperty()
+    keyword = ndb.KeyProperty(Keyword, repeated = True)
+    corresponding_url = ndb.StringProperty(required = True)
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_environment.get_template('templates/main.html')
+        self.response.out.write(main_page_template.render())
+
+        # keyword1 = Keyword(name = "funny")
+        # keyword1.put()
+        # keyword2 = Keyword(name = "intriguing")
+        # keyword2.put()
+        # keyword3 = Keyword(name = "relaxing")
+        # keyword3.put()
+        # keyword4 = Keyword(name = "educational")
+        # keyword4.put()
+        # video1 = Video(name = "funny game show answers" , keyword = [keyword1.key], corresponding_url = "https://www.youtube.com/watch?v=R7ghDhpCLKM")
+        # video1.put()
+        # video2 = Video(name = "intriguing fact about the human brain", keyword = [keyword2.key], corresponding_url = "https://www.youtube.com/watch?v=XQKDd_SjMJA")
+        # video2.put()
+        # video3 = Video(name = "relaxing kaleidoscpoic images", keyword = [keyword3.key], corresponding_url = "https://www.youtube.com/watch?v=q2fIWB8o-bs")
+        # video3.put()
+        # video4 = Video(name = "educational video about technology and nature", keyword = [keyword4.key], corresponding_url = "https://www.youtube.com/watch?v=POsXsOY71W0")
+        # video4.put()
+
+
         user = users.get_current_user()
         my_vars = {'user': user}
         if not user:
@@ -94,12 +114,6 @@ class MainHandler(webapp2.RequestHandler):
         # happy_punk = Playlist(genre = [genre2.key], mood = ["Happy"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify_france:playlist:5vUFrhjhYHJM1oAO50yLJS" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>')
         # happy_punk.put()
 
-
-
-    # def post(self):
-    #     mood = self.request.get('mood') #recieves mood. Eventually will get mood and genre and use them to get items from datastore
-    #
-
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
         home_page_template = jinja_environment.get_template('templates/home.html')
@@ -110,7 +124,19 @@ class VideoHandler(webapp2.RequestHandler):
     def get(self):
         video_page_template = jinja_environment.get_template('templates/video.html')
         self.response.out.write(video_page_template.render())
-
+        keyword = self.request.get('keyword')
+        if keyword:
+            keyword_key = Keyword.query(Keyword.name == keyword).get().key
+            logging.info("Keyword:" + str(keyword_key))
+            filtered_video_answer = Video.query().filter(Video.keyword == keyword_key).fetch()
+            logging.info("Answers: "  + str(filtered_video_answer))
+            # all_songs = Song.query().fetch()
+            if filtered_video_answer:
+                for video in filtered_video_answer:
+                    self.response.write(video.name)
+                    self.response.write(video.corresponding_url)
+            else:
+                self.response.write("No corresponding video")
 
 class MusicHandler(webapp2.RequestHandler):
     def get(self):
