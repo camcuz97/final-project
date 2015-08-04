@@ -76,17 +76,16 @@ class MainHandler(webapp2.RequestHandler):
         # song2 = Song(name = "Crooked Young", artist = artist2.key, genre = [genre2.key], mood = ["Angry"])
         # song3 = Song(name = "Forever Young", artist = artist3.key, genre = [genre1.key], mood = ["Chilled"])
         # song4 = Song(name = "Terrible Things", artist = artist4.key, genre = [genre2.key], mood = ["Sad"])
+        # song1.put()
+        # song2.put()
+        # song3.put()
+        # song4.put()
         user = users.get_current_user()
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
         else:
             self.response.write(user)
             main_page_template = jinja_environment.get_template('templates/main.html')
-            self.response.out.write(main_page_template.render())
-        # song1.put()
-        # song2.put()
-        # song3.put()
-        # song4.put()
 
     def post(self):
         mood = self.request.get('mood') #recieves mood. Eventually will get mood and genre and use them to get items from datastore
@@ -112,17 +111,18 @@ class MusicHandler(webapp2.RequestHandler):
         # genre = "Hip-Hop"
         mood = self.request.get('mood')
         genre = self.request.get('genre')
-        genre_key = Genre.query(Genre.name == genre).get().key
-        logging.info("Geeeeenre:" + str(genre_key))
-        logging.info("Moooooood: " + mood)
-        filtered_answer = Song.query().filter(Song.genre == genre_key and Song.mood == mood).fetch()
-        logging.info("Answers: "  + str(filtered_answer))
-        # all_songs = Song.query().fetch()
-        if filtered_answer:
-            for song in filtered_answer:
-                self.response.write(song.name)
-        else:
-            self.response.write("Nope")
+        if  genre and mood:
+            genre_key = Genre.query(Genre.name == genre).get().key
+            logging.info("Geeeeenre:" + str(genre_key))
+            logging.info("Moooooood: " + mood)
+            filtered_answer = Song.query().filter(Song.genre == genre_key and Song.mood == mood).fetch()
+            logging.info("Answers: "  + str(filtered_answer))
+            # all_songs = Song.query().fetch()
+            if filtered_answer:
+                for song in filtered_answer:
+                    self.response.write(song.name)
+            else:
+                self.response.write("Nope")
     # def post(self):
         # mood = self.request.get('mood')
         # genre = self.request.get('genre')
