@@ -64,7 +64,6 @@ class Video(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         main_page_template = jinja_environment.get_template('templates/main.html')
-        self.response.out.write(main_page_template.render())
 
         # keyword1 = Keyword(name = "funny")
         # keyword1.put()
