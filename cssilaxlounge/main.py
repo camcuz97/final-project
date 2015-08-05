@@ -220,17 +220,22 @@ class MusicHandler(webapp2.RequestHandler):
         #             #self.response.write(str(song.spotify_html) + "<br>")
         #     else:
         #         self.response.write("Nope")
+        # if genre and mood:
+        #     genre_key = Genre.query(Genre.name == genre).get().key
+        #     filtered_answer = Playlist.query().filter(Playlist.genre == genre_key and Playlist.mood == mood).fetch()
+        #     if filtered_answer:
+        #         for playlist in filtered_answer:
+        #             self.response.write('<p align = "center">%s</p>'%playlist.spotify_html)
+
+    def post(self):
+        mood = self.request.get('mood')
+        genre = self.request.get('genre')
         if genre and mood:
             genre_key = Genre.query(Genre.name == genre).get().key
             filtered_answer = Playlist.query().filter(Playlist.genre == genre_key and Playlist.mood == mood).fetch()
             if filtered_answer:
                 for playlist in filtered_answer:
                     self.response.write('<p align = "center">%s</p>'%playlist.spotify_html)
-    # def post(self):
-        # mood = self.request.get('mood')
-        # genre = self.request.get('genre')
-
-
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),

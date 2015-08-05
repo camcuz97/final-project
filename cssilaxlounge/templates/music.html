@@ -9,11 +9,16 @@
 </head>
 <body id="background">
   <div id="logo-head">
-  <a href="/home"><img src="images/logo2.png" id="logo" alt="Logo" width="125" height="125"></a><h1>'Lax Lounge</h1>
+  <a href="/home"><img src="images/logo2.png" id="logo" alt="Logo" width="125" height="125"></a>
+    <form>
+      <input type="submit" id="relax_button" class="nav_bar" value="Relax" formaction="/relax">
+      <input type="submit" class="nav_bar" value="Videos" formaction="/video">
+    </form>
+    <h1>'Lax Lounge</h1>
   </div>
   <div id="music-search">
   <p id="search-head">Find a playlist<br>that fits your mood!</p>
-  <form method="get" id="user-options">
+  <form method="post" id="user-options">
     <div id="mood_option"><p>Mood: <select name="mood"></p>
       <option value="Happy">Happy</option>
       <option value="Sad">Sad</option>
@@ -30,7 +35,7 @@
   </form>
 </div>
 <div id="search-results">
-  Spotify Produced Playlist
+  <p id="spot_playlist"></p>
 </div>
 </body>
 </html>
