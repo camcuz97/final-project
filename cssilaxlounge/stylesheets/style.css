@@ -8,18 +8,16 @@ body#background {
 }
 #top-head {
   font-family: 'Droid Serif', serif;
-  font-size: 54px;
-  margin-top:35px;
+  font-size: 55px;
+  margin-top:25px;
+}
+#bottom-head {
+  margin-top: -30px;
+  font-family: 'Droid Serif', serif;
+  font-size: 40px;
 }
 #logo {
-  margin-top:-60px;
-}
-#logo2 {
-  margin-left: -70%;
-  margin-top:-60px;
-}
-.media_button {
-  margin-top: -100px;
+  margin-top: -60px;
 }
 #home_button, .media_button {
   margin-top: -100px;
@@ -34,11 +32,10 @@ body#background {
   border-radius: 28px;
   font-family: 'Droid Serif', serif;
   color: black;
-  font-size: 22px;
+  font-size: 20px;
   padding: 5px 15px 5px 15px;
   text-decoration: none;
 }
-
 #home_button:hover, .media_button:hover {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
@@ -56,16 +53,6 @@ body#background {
   margin-left: auto;
   margin-right: auto;
 }
-#button1 {
-  margin-top: 250px;
-  float: left;
-  margin-left:30%;
-}
-#button2 {
-  margin-top: 250px;
-  float: left;
-  margin-left:25%;
-}
-#button3 {
-  margin-top: 70px;
+.media-button {
+  margin-top: -50px;
 }

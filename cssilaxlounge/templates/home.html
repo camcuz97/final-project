@@ -10,12 +10,15 @@
   <title>'Lax Lounge</title>
 </head>
 <body id="background">
-  <p id="top-head">Select A Path</p>
+  <p id="top-head">Welcome {{user}}, to The</p>
   <div id="path-options">
-    <form id="button1"><input type="submit" class="media_button" value="Music" formaction="/music"></form>
-    <img src="images/logo.png" id="logo2" alt="Logo" width="400" height="500">
-    <form id="button2"><input type="submit" class="media_button" value="Videos" formaction="/video"></form>
-    <form id="button3"><input type="submit" class="media_button" value="Gifs" formaction="#"></form>
+    <img src="images/logo.png" id="logo" alt="Logo" width="400" height="500">
+    <p id="bottom-head">Select Your Path</p>
+    <form id="nav_bar">
+      <input type="submit" class="media_button" value="Music" formaction="/music">
+      <input type="submit" class="media_button" value="Videos" formaction="/video">
+      <input type="submit" class="media_button" value="Relax" formaction="/relax">
+    </form>
   <div>
 </body>
 </html>
