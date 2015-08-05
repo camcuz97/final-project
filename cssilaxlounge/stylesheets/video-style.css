@@ -1,0 +1,89 @@
+body#background {
+  min-width: 500px;
+  background: url('https://lh3.googleusercontent.com/-i9_4KlhHnGg/UofGTP6V8eI/AAAAAAAAAMY/PWKRPbicDVM/s630-fcrop64=1,19992e54e665d1aa:Soften=1,60,0/blue%2Bocean%2Bcalm%2Brelaxing%2Bbright%2Bcolors%2B4961x3508%2Bwallpaper_wallpaperswa.com_39.jpg') no-repeat;
+  background-size: cover;
+  background-size: 100% 100%;
+  background-position: 0px 0px;
+}
+/* Logo and the heading */
+#logo {
+  margin-top: 30px;
+  margin-left: 50px;
+  padding-left: 30px;
+}
+#logo-head {
+  width: 85%;
+  margin-left: 125px;
+  margin-top: -25px;
+  border-bottom: 2px solid black;
+}
+h1 {
+  margin-bottom: 35px;
+  font-size: 80px;
+  font-family: 'Droid Serif', serif;
+  margin-left: 350px;
+  margin-top: -110px;
+}
+/* End */
+
+/* User search for videos */
+#video-search {
+  margin-left: 120px;
+  padding-right: -30px;
+  padding-top: 10px;
+  width: 25%;
+  height: 525px;
+  border-right: 2px solid black;
+}
+#search-head {
+  margin-top: 15px;
+  text-align: center;
+  font-family: 'Droid Serif', serif;
+  font-size: 25px;
+}
+#mood_option {
+  margin-top: -10px;
+  margin-left: 15px;
+}
+#user-options {
+  margin-left: 100px;
+}
+#search-button {
+  margin-left: 25px;
+  margin-top: 0px;
+  background: white;
+  background-image: -webkit-linear-gradient(top, white, grey);
+  background-image: -moz-linear-gradient(top, white, grey);
+  background-image: -ms-linear-gradient(top, white, grey);
+  background-image: -o-linear-gradient(top, white, grey);
+  background-image: linear-gradient(to bottom, white, grey);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: 'Droid Serif', serif;
+  color: black;
+  font-size: 15px;
+  padding: 0px 10px 0px 10px;
+  text-decoration: none;
+}
+#search-button:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+/* End */
+
+/* Videos */
+#search-results {
+  width: 800px;
+  height: 470px;
+  border:2px solid black;
+  float: right;
+  margin-top:-500px;
+  margin-right: 110px;
+}
+/* End */
