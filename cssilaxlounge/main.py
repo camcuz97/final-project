@@ -171,9 +171,9 @@ class VideoHandler(webapp2.RequestHandler):
         keyword = self.request.get('keyword')
         if keyword:
             keyword_key = Keyword.query(Keyword.name == keyword).get().key
-            logging.info("Keyword:" + str(keyword_key))
+            #logging.info("Keyword:" + str(keyword_key))
             filtered_video_answer = Video.query().filter(Video.keyword == keyword_key).fetch()
-            logging.info("Answers: "  + str(filtered_video_answer))
+            #logging.info("Answers: "  + str(filtered_video_answer))
             # all_songs = Song.query().fetch()
             if filtered_video_answer:
                 for video in filtered_video_answer:
