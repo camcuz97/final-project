@@ -9,7 +9,12 @@
 </head>
 <body id="background">
   <div id="logo-head">
-  <a href="/home"><img src="images/logo2.png" id="logo" alt="Logo" width="125" height="125"></a><h1>'Lax Lounge</h1>
+  <a href="/home"><img src="images/logo2.png" id="logo" alt="Logo" width="125" height="125"></a>
+    <form>
+      <input type="submit" id="relax_button" class="nav_bar" value="Relax" formaction="/relax">
+      <input type="submit" class="nav_bar" value="Music" formaction="/music">
+    </form>
+    <h1>'Lax Lounge</h1>
   </div>
   <div id="video-search">
   <p id="search-head">Find some videos<br>that fit your mood!</p>
@@ -22,7 +27,7 @@
       <option value="ted_talk">Ted Talk</option>
       <option value="fails">Fails</option>
     </select></h3>
-    <input type="submit" value="Submit" name="submit_button">
+    <input type="submit" id="search-button" value="Find Videos" name="submit_button">
   </form>
 </div>
 <div id="search-results">
