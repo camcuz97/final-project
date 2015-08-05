@@ -1,18 +1,36 @@
 <!--DOCTYPE html-->
 <html>
 <head>
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
+    <!-- End -->
+  <link rel="stylesheet" type="text/css" href="stylesheets/video-style.css">
   <title>'Lax Lounge</title>
 </head>
-<center><body>
-  <h2>Find a playlist that fits your mood!</h2>
-  <form method="post">
-    <h3>First name: <select name="mood">
-      <option value="happy">Happy</option>
-      <option value="sad">Sad</option>
-      <option value="mad">Mad</option>
-      <option value="chilled">Chilled</option>
-    </select></h3>
-    <input type="submit" value="Submit" name="submit_button">
+<body id="background">
+  <div id="logo-head">
+  <a href="/home"><img src="images/logo2.png" id="logo" alt="Logo" width="125" height="125"></a><h1>'Lax Lounge</h1>
+  </div>
+  <div id="video-search">
+  <p id="search-head">Find some videos<br>that fit your mood!</p>
+  <form method="get" id="user-options">
+    <div id="mood_option"><p>Mood: <select name="mood"></p>
+      <option value="Happy">Happy</option>
+      <option value="Sad">Sad</option>
+      <option value="Angry">Angry</option>
+      <option value="Chilled">Chilled</option>
+    </select></div>
+    <div id="genre_option"><p>Genre: <select name="genre"></p>
+      <option value="Pop">Pop</option>
+      <option value="Hip-Hop">Hip-Hop</option>
+      <option value="Punk">Punk</option>
+      <option value="Alternative">Alternative</option>
+    </select></div>
+    <input type="submit" id="search-button" value="Find Videos" name="submit_button">
   </form>
-</body></center>
+</div>
+<div id="search-results">
+  YouTube Produced Videos
+</div>
+</body>
 </html>
