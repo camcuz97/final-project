@@ -26,8 +26,8 @@ h1 {
 }
 /* End */
 
-/* User search for playlist */
-#music-search {
+/* User search for videos */
+#video-search {
   margin-left: 120px;
   padding-right: -30px;
   padding-top: 10px;
@@ -77,7 +77,7 @@ h1 {
 }
 /* End */
 
-/* Playlist */
+/* Videos */
 #search-results {
   width: 800px;
   height: 470px;

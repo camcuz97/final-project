@@ -1,10 +1,18 @@
 <!--DOCTYPE html-->
 <html>
 <head>
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
+    <!-- End -->
+  <link rel="stylesheet" type="text/css" href="stylesheets/video-style.css">
   <title>'Lax Lounge</title>
 </head>
-<center><body>
-  <h2>Find a playlist that fits your mood!</h2>
+<body id="background">
+  <div id="logo-head">
+  <a href="/home"><img src="images/logo2.png" id="logo" alt="Logo" width="125" height="125"></a><h1>'Lax Lounge</h1>
+  </div>
+  <div id="video-search">
+  <p id="search-head">Find some videos<br>that fit your mood!</p>
   <form method="get">
     <h3>Video: <select name="keyword">
       <option value="funny">Funny</option>
@@ -16,5 +24,9 @@
     </select></h3>
     <input type="submit" value="Submit" name="submit_button">
   </form>
-</body></center>
+</div>
+<div id="search-results">
+  YouTube Produced Videos
+</div>
+</body>
 </html>

@@ -75,6 +75,14 @@ class MainHandler(webapp2.RequestHandler):
         # keyword2.put()
         # keyword3.put()
         # keyword4.put()
+        # video1 = Video(name = "funny game show answers" , keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R7ghDhpCLKM" frameborder="0" allowfullscreen></iframe>')
+        # video1.put()
+        # video2 = Video(name = "intriguing fact about the human brain", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/XQKDd_SjMJA" frameborder="0" allowfullscreen></iframe>')
+        # video2.put()
+        # video3 = Video(name = "relaxing kaleidoscpoic images", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/q2fIWB8o-bs" frameborder="0" allowfullscreen></iframe>')
+        # video3.put()
+        # video4 = Video(name = "educational video about technology and nature", keyword = [keyword4.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/POsXsOY71W0" frameborder="0" allowfullscreen></iframe>')
+        # video4.put()
         # keyword5.put()
         # keyword6.put()
         #
@@ -125,7 +133,6 @@ class MainHandler(webapp2.RequestHandler):
         # fail_video_1.put()
         # fail_video_2.put()
         # fail_video_3.put()
-
 
 
         user = users.get_current_user()
@@ -210,7 +217,7 @@ class MusicHandler(webapp2.RequestHandler):
             filtered_answer = Playlist.query().filter(Playlist.genre == genre_key and Playlist.mood == mood).fetch()
             if filtered_answer:
                 for playlist in filtered_answer:
-                    self.response.write('<p align = "center"> %s </p'%playlist.spotify_html)
+                    self.response.write('<p align = "center">%s</p'%playlist.spotify_html)
     # def post(self):
         # mood = self.request.get('mood')
         # genre = self.request.get('genre')
