@@ -1,0 +1,8 @@
+body#background {
+  min-width: 500px;
+  text-align: center;
+  background: url('https://lh3.googleusercontent.com/-i9_4KlhHnGg/UofGTP6V8eI/AAAAAAAAAMY/PWKRPbicDVM/s630-fcrop64=1,19992e54e665d1aa:Soften=1,60,0/blue%2Bocean%2Bcalm%2Brelaxing%2Bbright%2Bcolors%2B4961x3508%2Bwallpaper_wallpaperswa.com_39.jpg') no-repeat;
+  background-size: cover;
+  background-size: 100% 100%;
+  background-position: 0px 0px;
+}
