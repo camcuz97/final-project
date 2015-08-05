@@ -79,9 +79,8 @@ h1 {
 
 /* Playlist */
 #search-results {
-  width: 780px;
-  height: 430px;
-  border:2px solid black;
+  width: 800px;
+  height: 470px;
   float: right;
   margin-top:-490px;
   margin-right: 130px;
