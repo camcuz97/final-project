@@ -43,8 +43,8 @@ class Song(ndb.Model):
     spotify_html = ndb.StringProperty(required = True)
 
 class Playlist(ndb.Model):
-    genre = ndb.KeyProperty(Genre, repeated = True)
-    mood = ndb.StringProperty(repeated = True)
+    genre = ndb.KeyProperty(Genre, required = True)
+    mood = ndb.StringProperty(required = True)
     spotify_html = ndb.StringProperty(required = True)
 
 class Author(ndb.Model):
@@ -59,124 +59,112 @@ class Video(ndb.Model):
     keyword = ndb.KeyProperty(Keyword, repeated = True)
     corresponding_html = ndb.StringProperty(required = True)
 
-class NoiseIdentifier(ndb.Model):
-    identifier = ndb.StringProperty(required = True)
-
-class RelaxNoise(ndb.Model):
-    name = ndb.StringProperty(required = True)
-    identifier = ndb.KeyProperty(NoiseIdentifier, required = True)
-    corresponding_url = ndb.StringProperty(required = True)
-
-
-
-#saving keywords, videos, relaxing noises and playlists to the datastore
-
-# identifier1 = NoiseIdentifier(identifier = "Ocean")
-# identifier2 = NoiseIdentifier(identifier = "Bird")
-# identifier3 = NoiseIdentifier(identifier = "Cricket")
-# identifier4 = NoiseIdentifier(identifier = "Rain")
-# identifier1.put()
-# identifier2.put()
-# identifier3.put()
-# identifier4.put()
-
-# relax_noise_1 = RelaxNoise(name = "Ocean Waves", noise_identifier = identifier1.key, corresponding_url = '<audio src="http://soundbible.com/1935-Ocean-Waves.html" preload="auto" autoplay="autoplay"></audio>')
-# relax_noise_2 = RelaxNoise(name = "Bird and Rain", noise_identifier = identifier2.key, corresponding_url = '<audio src="http://soundbible.com/2006-Bird-In-Rain.html" preload="auto" autoplay="autoplay"></audio>')
-# relax_noise_3 = RelaxNoise(name = "Cricket Songs", noise_identifier = identifier3.key, corresponding_url = '<audio src="http://soundbible.com/2083-Crickets-Chirping-At-Night.html" preload="auto" autoplay="autoplay"></audio>')
-# relax_noise_4 = RelaxNoise(name = "Rainstorm", noise_identifier = identifier4.key, corresponding_url = '<audio src="http://soundbible.com/1829-Medium-Rainstorm.html" preload="auto" autoplay="autoplay"></audio>')
-# relax_noise_1.put()
-# relax_noise_2.put()
-# relax_noise_3.put()
-# relax_noise_4.put()
-#
-# keyword1 = Keyword(name = "funny")
-# keyword2 = Keyword(name = "intriguing")
-# keyword3 = Keyword(name = "relaxing")
-# keyword4 = Keyword(name = "educational")
-# keyword5 = Keyword(name = "ted_talk")
-# keyword6 = Keyword(name = "fails")
-# keyword1.put()
-# keyword2.put()
-# keyword3.put()
-# keyword4.put()
-# keyword5.put()
-# keyword6.put()
-#
-# funny_video_1 = Video(name = "Funny Game Show Answers", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R7ghDhpCLKM" frameborder="0" allowfullscreen></iframe>')
-# funny_video_2 = Video(name = "America's Funniest Home Videos Compilation", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/W4wb5r-FNTc" frameborder="0" allowfullscreen></iframe>')
-# funny_video_3 = Video(name = "April Fools Prank", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R9rymEWJX38" frameborder="0" allowfullscreen></iframe>')
-# funny_video_1.put()
-# funny_video_2.put()
-# funny_video_3.put()
-#
-# intriguing_video_1 = Video(name = "intriguing facts about the human brain", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/XQKDd_SjMJA" frameborder="0" allowfullscreen></iframe>')
-# intriguing_video_2 = Video(name = "10 obscure intriguing facts", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/f8sW_tv0WRI" frameborder="0" allowfullscreen></iframe>')
-# intriguing_video_3 = Video(name = "intriguing people", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Up5eLfjdjEM" frameborder="0" allowfullscreen></iframe>')
-# intriguing_video_1.put()
-# intriguing_video_2.put()
-# intriguing_video_3.put()
-#
-# relaxing_video_1 = Video(name = "relaxing kaleidoscope", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/q2fIWB8o-bs" frameborder="0" allowfullscreen></iframe>')
-# relaxing_video_2 = Video(name = "relaxing nature", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kkbmijuAvlM" frameborder="0" allowfullscreen></iframe>')
-# relaxing_video_3 = Video(name = "relaxing stargazing", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/HXT38GS1Hrw" frameborder="0" allowfullscreen></iframe>')
-# relaxing_video_1.put()
-# relaxing_video_2.put()
-# relaxing_video_3.put()
-#
-# educational_video_1 = Video(name = "Pluto's First Encounter", keyword = [keyword4.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/rYg7rMgJuNQ" frameborder="0" allowfullscreen></iframe>')
-# educational_video_2 = Video(name = "Navy Seals Documentary", keyword = [keyword4.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/yAgKnwJQYUs" frameborder="0" allowfullscreen></iframe>')
-# educational_video_3 = Video(name = "Jane Goodall on Chimpanzee's", keyword = [keyword4.key], corresponding_html = '<iframe width="420" height="315" src="https://www.youtube.com/embed/LKyrLFyOi04" frameborder="0" allowfullscreen></iframe>')
-# educational_video_1.put()
-# educational_video_2.put()
-# educational_video_3.put()
-#
-# ted_video_1 = Video(name = "Temple Grandin on Autism Brains", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/fn_9f5x0f1Q" frameborder="0" allowfullscreen></iframe>')
-# ted_video_2 = Video(name = "Larry Page on Where Google is going", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/mArrNRWQEso" frameborder="0" allowfullscreen></iframe>')
-# ted_video_3 = Video(name = "Gavin Schmidt on the Environment", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/JrJJxn-gCdo" frameborder="0" allowfullscreen></iframe>')
-# ted_video_1.put()
-# ted_video_2.put()
-# ted_video_3.put()
-#
-# fail_video_1 = Video(name = "Water sport fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ufU7ZkAn0GI" frameborder="0" allowfullscreen></iframe>')
-# fail_video_2 = Video(name = "Track fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/iDicTJwqhl4" frameborder="0" allowfullscreen></iframe>')
-# fail_video_3 = Video(name = "Trampoline fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/bFH5NdkhfVs" frameborder="0" allowfullscreen></iframe>')
-# fail_video_1.put()
-# fail_video_2.put()
-# fail_video_3.put()
-#
-#
-# artist1 = Artist(name = "Drake")
-# artist2 = Artist(name = "Bring me the Horizon")
-# artist3 = Artist(name = "Jay-Z")
-# artist4 = Artist(name = "Mayday Parade")
-# artist1.put()
-# artist2.put()
-# artist3.put()
-# artist4.put()
-#
-# genre1 = Genre(name = "Hip-Hop")
-# genre2 = Genre(name = "Punk")
-# genre1.put()
-# genre2.put()
-#
-# song1 = Song(name = "Headlines",artist = artist1.key , genre = [genre1.key], mood = ["Happy"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:track:3XWZ7PNB3ei50bTPzHhqA6" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>')
-# song2 = Song(name = "Crooked Young", artist = artist2.key, genre = [genre2.key], mood = ["Angry"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:track:3XWZ7PNB3ei50bTPzHhqA6" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>')
-# song3 = Song(name = "Forever Young", artist = artist3.key, genre = [genre1.key], mood = ["Chilled"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:track:3XWZ7PNB3ei50bTPzHhqA6" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>')
-# song4 = Song(name = "Terrible Things", artist = artist4.key, genre = [genre2.key], mood = ["Sad"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:track:3XWZ7PNB3ei50bTPzHhqA6" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>')
-# song1.put()
-# song2.put()
-# song3.put()
-# song4.put()
-#
-#
-# happy_punk = Playlist(genre = [genre2.key], mood = ["Happy"], spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify_france:playlist:5vUFrhjhYHJM1oAO50yLJS" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>')
-# happy_punk.put()
-
-
-
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        # keyword1 = Keyword(name = "funny")
+        # keyword2 = Keyword(name = "intriguing")
+        # keyword3 = Keyword(name = "relaxing")
+        # keyword4 = Keyword(name = "educational")
+        # keyword5 = Keyword(name = "ted_talk")
+        # keyword6 = Keyword(name = "fails")
+        #
+        # keyword1.put()
+        # keyword2.put()
+        # keyword3.put()
+        # keyword4.put()
+        # keyword5.put()
+        # keyword6.put()
+
+        # funny_video_1 = Video(name = "funny game show answers", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R7ghDhpCLKM" frameborder="0" allowfullscreen></iframe>')
+        # funny_video_2 = Video(name = "America's Funniest Home Videos Compilation", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/W4wb5r-FNTc" frameborder="0" allowfullscreen></iframe>')
+        # funny_video_3 = Video(name = "April Fools Prank", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R9rymEWJX38" frameborder="0" allowfullscreen></iframe>')
+        #
+        # funny_video_1.put()
+        # funny_video_2.put()
+        # funny_video_3.put()
+        #
+        # intriguing_video_1 = Video(name = "intriguing facts about the human brain", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/XQKDd_SjMJA" frameborder="0" allowfullscreen></iframe>')
+        # intriguing_video_2 = Video(name = "10 obscure intriguing facts", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/f8sW_tv0WRI" frameborder="0" allowfullscreen></iframe>')
+        # intriguing_video_3 = Video(name = "intriguing people", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Up5eLfjdjEM" frameborder="0" allowfullscreen></iframe>')
+        #
+        # intriguing_video_1.put()
+        # intriguing_video_2.put()
+        # intriguing_video_3.put()
+        #
+        # relaxing_video_1 = Video(name = "relaxing kaleidoscope", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/q2fIWB8o-bs" frameborder="0" allowfullscreen></iframe>')
+        # relaxing_video_2 = Video(name = "relaxing nature", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kkbmijuAvlM" frameborder="0" allowfullscreen></iframe>')
+        # relaxing_video_3 = Video(name = "relaxing stargazing", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/HXT38GS1Hrw" frameborder="0" allowfullscreen></iframe>')
+        #
+        # relaxing_video_1.put()
+        # relaxing_video_2.put()
+        # relaxing_video_3.put()
+        #
+        # educational_video_1 = Video(name = "Pluto's First Encounter", keyword = [keyword4.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/rYg7rMgJuNQ" frameborder="0" allowfullscreen></iframe>')
+        # educational_video_2 = Video(name = "Navy Seals Documentary", keyword = [keyword4.key], corresponding_html = '<iframe width="420" height="315" src="https://www.youtube.com/embed/yAgKnwJQYUs" frameborder="0" allowfullscreen></iframe>')
+        # educational_video_3 = Video(name = "Jane Goodall on Chimpanzee's", keyword = [keyword4.key], corresponding_html = '<iframe width="420" height="315" src="https://www.youtube.com/embed/LKyrLFyOi04" frameborder="0" allowfullscreen></iframe>')
+        #
+        # educational_video_1.put()
+        # educational_video_2.put()
+        # educational_video_3.put()
+        #
+        # ted_video_1 = Video(name = "Temple Grandin on Autism Brains", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/fn_9f5x0f1Q" frameborder="0" allowfullscreen></iframe>')
+        # ted_video_2 = Video(name = "Larry Page on Where Google is going", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/mArrNRWQEso" frameborder="0" allowfullscreen></iframe>')
+        # ted_video_3 = Video(name = "Gavin Schmidt on the Environment", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/JrJJxn-gCdo" frameborder="0" allowfullscreen></iframe>')
+        #
+        # ted_video_1.put()
+        # ted_video_2.put()
+        # ted_video_3.put()
+        #
+        # fail_video_1 = Video(name = "Water sport fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ufU7ZkAn0GI" frameborder="0" allowfullscreen></iframe>')
+        # fail_video_2 = Video(name = "Track fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/iDicTJwqhl4" frameborder="0" allowfullscreen></iframe>')
+        # fail_video_3 = Video(name = "Trampoline fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/bFH5NdkhfVs" frameborder="0" allowfullscreen></iframe>')
+        #
+        # fail_video_1.put()
+        # fail_video_2.put()
+        # fail_video_3.put()
+        #
+        # genre1 = Genre(name = "Hip-Hop")
+        # genre1.put()
+        # genre2 = Genre(name = "Punk")
+        # genre2.put()
+        # genre3 = Genre(name = "Alternative")
+        # genre3.put()
+        # genre4 = Genre(name = "Pop")
+        # genre4.put()
+        # happy_punk = Playlist(genre = genre2.key, mood = "Happy", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:6SiRKZR8I6sGkZvrc1axbm" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # happy_punk.put()
+        # angry_punk = Playlist(genre = genre2.key, mood = "Angry", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:1B8lmAiamPhWhffvWQMFkc" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # angry_punk.put()
+        # sad_punk = Playlist(genre = genre2.key, mood = "Sad", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:1B8lmAiamPhWhffvWQMFkc" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # sad_punk.put()
+        # chill_punk = Playlist(genre = genre2.key, mood = "Chill", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:2ED4mB5roq8K5ZB1mw2GSq" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # chill_punk.put()
+        # happy_hiphop = Playlist(genre = genre1.key, mood = "Happy", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:707VPhsNKJmGgzxfVAQ8m6" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # happy_hiphop.put()
+        # angry_hiphop = Playlist(genre = genre1.key, mood = "Angry", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:5PXFRxTNZAqEmJcZY0AkAf" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # angry_hiphop.put()
+        # sad_hiphop = Playlist(genre = genre1.key, mood = "Sad", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:3VoZw4XMfiwI0qLjn26CFs" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # sad_hiphop.put()
+        # chill_hiphop = Playlist(genre = genre1.key, mood = "Chill", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:55Dcl4ZbCWWkvfZhp4cp3Q" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # chill_hiphop.put()
+        # happy_pop = Playlist(genre = genre4.key, mood = "Happy", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:3K6F139jLrvC8BIug62tAp" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # happy_pop.put()
+        # angry_pop = Playlist(genre = genre4.key, mood = "Angry", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:76XycdWsdprBsu31rIeobf" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # angry_pop.put()
+        # sad_pop = Playlist(genre = genre4.key, mood = "Sad", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:3eQpHvNhHp0MHmt1RIHMmq" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # sad_pop.put()
+        # chill_pop = Playlist(genre = genre4.key, mood = "Chill", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:70fcnzVk6aAzcJupyZ9SyM" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # chill_pop.put()
+        # happy_alt = Playlist(genre = genre3.key, mood = "Happy", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:12139929588:playlist:3Z4yQt3TNTQC15YqUXpINh" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # happy_alt.put()
+        # angry_alt = Playlist(genre = genre3.key, mood = "Angry", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:0L5BbmKIanbvcGjezB97KQ" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # angry_alt.put()
+        # sad_alt = Playlist(genre = genre3.key, mood = "Sad", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:kkt_topol:playlist:5tPAmcKqoBrGChGO6lMuHu" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # sad_alt.put()
+        # chill_alt = Playlist(genre = genre3.key, mood = "Chill", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:40R1t6LmY3IWGgAOtvs53R" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # chill_alt.put()
+
         main_page_template = jinja_environment.get_template('templates/main.html')
 
         user = users.get_current_user()
@@ -232,9 +220,8 @@ class VideoHandler(webapp2.RequestHandler):
 class MusicHandler(webapp2.RequestHandler):
     def get(self):
         music_page_template = jinja_environment.get_template('templates/music.html')
-        self.response.out.write(music_page_template.render())
-        # mood = self.request.get('mood')
-        # genre = self.request.get('genre')
+        mood = self.request.get('mood')
+        genre = self.request.get('genre')
         # if  genre and mood:
         #     genre_key = Genre.query(Genre.name == genre).get().key
         #     filtered_answer = Song.query().filter(Song.genre == genre_key and Song.mood == mood).fetch()
@@ -255,7 +242,18 @@ class MusicHandler(webapp2.RequestHandler):
         #     if filtered_answer:
         #         for playlist in filtered_answer:
         #             self.response.write('<p align = "center">%s</p>'%playlist.spotify_html)
-
+        mood = self.request.get('mood')
+        genre = self.request.get('genre')
+        if genre and mood:
+            genre_key = Genre.query(Genre.name == genre).get().key
+            filtered_answer = Playlist.query(Playlist.genre == genre_key, Playlist.mood == mood).fetch()
+            my_vars = {'spotify_html': filtered_answer[0].spotify_html}
+            if filtered_answer:
+                self.response.out.write(music_page_template.render(my_vars))
+                #for playlist in filtered_answer:
+                    #self.response.write('<p align = "center">%s</p>'%playlist.spotify_html)
+        else:
+            self.response.out.write(music_page_template.render())
 
 
 
