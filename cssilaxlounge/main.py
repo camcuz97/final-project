@@ -190,7 +190,13 @@ class MainHandler(webapp2.RequestHandler):
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
         home_page_template = jinja_environment.get_template('templates/home.html')
-        self.response.out.write(home_page_template.render())
+        user = users.get_current_user()
+        my_vars = {'user': user}
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
+        else:
+            main_page_template = jinja_environment.get_template('templates/home.html')
+            self.response.out.write(home_page_template.render(my_vars))
 
 class RelaxHandler(webapp2.RequestHandler):
     def get(self):
