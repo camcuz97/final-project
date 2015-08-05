@@ -75,16 +75,6 @@ class Video(ndb.Model):
                         # keyword5.put()
                         # keyword6.put()
                         #
-                        # video1 = Video(name = "funny game show answers" , keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R7ghDhpCLKM" frameborder="0" allowfullscreen></iframe>')
-                        # video1.put()
-                        # video2 = Video(name = "intriguing fact about the human brain", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/XQKDd_SjMJA" frameborder="0" allowfullscreen></iframe>')
-                        # video2.put()
-                        # video3 = Video(name = "relaxing kaleidoscpoic images", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/q2fIWB8o-bs" frameborder="0" allowfullscreen></iframe>')
-                        # video3.put()
-                        # video4 = Video(name = "educational video about technology and nature", keyword = [keyword4.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/POsXsOY71W0" frameborder="0" allowfullscreen></iframe>')
-                        # video4.put()
-                        #
-                        #
                         # funny_video_1 = Video(name = "funny game show answers", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R7ghDhpCLKM" frameborder="0" allowfullscreen></iframe>')
                         # funny_video_2 = Video(name = "America's Funniest Home Videos Compilation", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/W4wb5r-FNTc" frameborder="0" allowfullscreen></iframe>')
                         # funny_video_3 = Video(name = "April Fools Prank", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R9rymEWJX38" frameborder="0" allowfullscreen></iframe>')
@@ -173,18 +163,9 @@ class Video(ndb.Model):
                         # sad_alt.put()
                         # chill_alt = Playlist(genre = genre3.key, mood = "Chill", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:40R1t6LmY3IWGgAOtvs53R" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
                         # chill_alt.put()
-        #
-        #
-        #
+
         # main_page_template = jinja_environment.get_template('templates/main.html')
         #
-        # user = users.get_current_user()
-        # my_vars = {'user': user}
-        # if not user:
-        #     self.redirect(users.create_login_url(self.request.uri))
-        # else:
-        #     main_page_template = jinja_environment.get_template('templates/main.html')
-        #     self.response.out.write(main_page_template.render(my_vars))
 
 
 class HomeHandler(webapp2.RequestHandler):
@@ -202,6 +183,19 @@ class RelaxHandler(webapp2.RequestHandler):
     def get(self):
         relax_page_template = jinja_environment.get_template('templates/relax.html')
         self.response.out.write(relax_page_template.render())
+        noise = self.request.get('noise')
+        if noise:
+            noise_key = NoiseIdentifier.query(NoiseIdentifier.identifier == noise).get().key
+            logging.info("Keyword:" + str(noise_key))
+            filtered_noise_answer = RelaxNoise.query().filter(RelaxNoise.identifier == noise_key).fetch()
+            logging.info("Answers: "  + str(filtered_noise_answer))
+            if filtered_noise_answer:
+                for noise in filtered_noise_answer:
+                    self.response.write("<p><strong>""%s""</strong></p>"%noise.name)
+                    self.response.write("<br/>")
+                    self.response.write("%s"%noise.corresponding_url)
+            else:
+                self.response.write("No corresponding video")
 
 class VideoHandler(webapp2.RequestHandler):
     def get(self):
@@ -213,7 +207,6 @@ class VideoHandler(webapp2.RequestHandler):
             #logging.info("Keyword:" + str(keyword_key))
             filtered_video_answer = Video.query().filter(Video.keyword == keyword_key).fetch()
             #logging.info("Answers: "  + str(filtered_video_answer))
-            # all_songs = Song.query().fetch()
             if filtered_video_answer:
                 for video in filtered_video_answer:
                     self.response.write("<p><strong>""%s""</strong></p>"%video.name)
@@ -225,7 +218,6 @@ class VideoHandler(webapp2.RequestHandler):
 class MusicHandler(webapp2.RequestHandler):
     def get(self):
         music_page_template = jinja_environment.get_template('templates/music.html')
-
         mood = self.request.get('mood')
         genre = self.request.get('genre')
         # if  genre and mood:
@@ -260,6 +252,7 @@ class MusicHandler(webapp2.RequestHandler):
                     #self.response.write('<p align = "center">%s</p>'%playlist.spotify_html)
         else:
             self.response.out.write(music_page_template.render())
+
 
 
 app = webapp2.WSGIApplication([
