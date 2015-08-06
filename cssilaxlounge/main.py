@@ -59,8 +59,6 @@ class Video(ndb.Model):
     keyword = ndb.KeyProperty(Keyword, repeated = True)
     corresponding_html = ndb.StringProperty(required = True)
 
-# class MainHandler(webapp2.RequestHandler):
-#     def get(self):
                         # keyword1 = Keyword(name = "funny")
                         # keyword2 = Keyword(name = "intriguing")
                         # keyword3 = Keyword(name = "relaxing")
@@ -117,7 +115,7 @@ class Video(ndb.Model):
                         #
                         # fail_video_1 = Video(name = "Water sport fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ufU7ZkAn0GI" frameborder="0" allowfullscreen></iframe>')
                         # fail_video_2 = Video(name = "Track fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/iDicTJwqhl4" frameborder="0" allowfullscreen></iframe>')
-                        # fail_video_3 = Video(name = "Trampoline fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/bFH5NdkhfVs" frameborder="0" allowfullscreen></iframe>')
+                        # fail_video_3 = Video(name = "Trampoline fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/EmP2JHUTisg" frameborder="0" allowfullscreen></iframe>')
                         #
                         # fail_video_1.put()
                         # fail_video_2.put()
@@ -163,6 +161,9 @@ class Video(ndb.Model):
                         # sad_alt.put()
                         # chill_alt = Playlist(genre = genre3.key, mood = "Chill", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:40R1t6LmY3IWGgAOtvs53R" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
                         # chill_alt.put()
+# class MainHandler(webapp2.RequestHandler):
+#     def get(self):
+
 
         # main_page_template = jinja_environment.get_template('templates/main.html')
         #
