@@ -60,7 +60,6 @@ class Video(ndb.Model):
     keyword = ndb.KeyProperty(Keyword, repeated = True)
     corresponding_html = ndb.StringProperty(required = True)
 
-
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
 
