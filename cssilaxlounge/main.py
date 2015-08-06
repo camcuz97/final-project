@@ -62,9 +62,28 @@ class Video(ndb.Model):
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
-
         home_page_template = jinja_environment.get_template('templates/home.html')
         user = users.get_current_user()
+        # hip_id = Genre.query(Genre.name == 'Hip-Hop').get().key.id()
+        # hip_key = ndb.Key(Genre, int(hip_id))
+        # punk_id = Genre.query(Genre.name == 'Punk').get().key.id()
+        # punk_key = ndb.Key(Genre, int(punk_id))
+        # pop_id = Genre.query(Genre.name == 'Pop').get().key.id()
+        # pop_key = ndb.Key(Genre, int(pop_id))
+        # alt_id = Genre.query(Genre.name == 'Alternative').get().key.id()
+        # alt_key = ndb.Key(Genre, int(alt_id))
+        #
+        #
+        # #ndb.Key(Genre, int())
+        #
+        # generic_hiphop = Playlist(genre = hip_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:5yolys8XG4q7YfjYGl5Lff" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # generic_hiphop.put()
+        # generic_punk = Playlist(genre = punk_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:0dBTRmxyfCYFY483cve71c" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # generic_punk.put()
+        # generic_alt = Playlist(genre = alt_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:2YoVrFsJPvunjHQYfM12cP" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # generic_alt.put()
+        # generic_pop = Playlist(genre = pop_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:5FJXhjdILmRA2z5bvz4nzf" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+        # generic_pop.put()
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
         else:
@@ -137,12 +156,12 @@ class HomeHandler(webapp2.RequestHandler):
                 fail_video_3.put()
 
                 genre1 = Genre(name = "Hip-Hop")
-                genre1.put()
                 genre2 = Genre(name = "Punk")
-                genre2.put()
                 genre3 = Genre(name = "Alternative")
-                genre3.put()
                 genre4 = Genre(name = "Pop")
+                genre1.put()
+                genre2.put()
+                genre3.put()
                 genre4.put()
                 happy_punk = Playlist(genre = genre2.key, mood = "Happy", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:1248161175:playlist:6SiRKZR8I6sGkZvrc1axbm" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
                 happy_punk.put()
