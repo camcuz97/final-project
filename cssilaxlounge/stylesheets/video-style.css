@@ -2,7 +2,7 @@ body#background {
   min-width: 500px;
   background: url('https://lh3.googleusercontent.com/-i9_4KlhHnGg/UofGTP6V8eI/AAAAAAAAAMY/PWKRPbicDVM/s630-fcrop64=1,19992e54e665d1aa:Soften=1,60,0/blue%2Bocean%2Bcalm%2Brelaxing%2Bbright%2Bcolors%2B4961x3508%2Bwallpaper_wallpaperswa.com_39.jpg') no-repeat;
   background-size: cover;
-  background-size: 100% 100%;
+  background-size: 200% 200%;
   background-position: 0px 0px;
 }
 /* Logo and the heading */
@@ -35,7 +35,7 @@ h3 {
   padding-right: -30px;
   padding-top: 10px;
   width: 25%;
-  height: 505px;
+  height: 1000px;
   border-right: 2px solid black;
 }
 #search-head {
@@ -85,8 +85,7 @@ h3 {
   width: 800px;
   height: 470px;
   float: right;
-  margin-top:-490px;
-  margin-right: 130px;
+  margin-top:-1000px;
 }
 /* End */
 
