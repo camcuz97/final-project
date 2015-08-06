@@ -200,46 +200,31 @@ class RelaxHandler(webapp2.RequestHandler):
 class VideoHandler(webapp2.RequestHandler):
     def get(self):
         video_page_template = jinja_environment.get_template('templates/video.html')
-        self.response.out.write(video_page_template.render())
         keyword = self.request.get('keyword')
         if keyword:
             keyword_key = Keyword.query(Keyword.name == keyword).get().key
             #logging.info("Keyword:" + str(keyword_key))
-            filtered_video_answer = Video.query().filter(Video.keyword == keyword_key).fetch()
+            filtered_video_answer = Video.query(Video.keyword == keyword_key).fetch()
+            filtered_vid_answer = []
+            for vid in filtered_video_answer:
+                filtered_vid_answer.append(str(vid.corresponding_html))
             #logging.info("Answers: "  + str(filtered_video_answer))
+            vid_vars = {'video_html': filtered_vid_answer}
             if filtered_video_answer:
-                for video in filtered_video_answer:
-                    self.response.write("<p><strong>""%s""</strong></p>"%video.name)
-                    self.response.write("<br/>")
-                    self.response.write("%s"%video.corresponding_html)
-            else:
-                self.response.write("No corresponding video")
+                self.response.out.write(video_page_template.render(vid_vars))
+        else:
+                self.response.out.write(video_page_template.render())
+
+            #     for video in filtered_video_answer:
+            #         self.response.write("<p><strong>""%s""</strong></p>"%video.name)
+            #         self.response.write("<br/>")
+            #         self.response.write("%s"%video.corresponding_html)
+            # else:
+            #     self.response.write("No corresponding video")
 
 class MusicHandler(webapp2.RequestHandler):
     def get(self):
         music_page_template = jinja_environment.get_template('templates/music.html')
-        mood = self.request.get('mood')
-        genre = self.request.get('genre')
-        # if  genre and mood:
-        #     genre_key = Genre.query(Genre.name == genre).get().key
-        #     filtered_answer = Song.query().filter(Song.genre == genre_key and Song.mood == mood).fetch()
-        #     my_vars = {}
-        #     for song in filtered_answer:
-        #         my_vars[str(song.name)] = str(song.spotify_html)
-        #     logging.info(my_vars)
-        #     # all_songs = Song.query().fetch()
-        #     if filtered_answer:
-        #         for song in filtered_answer:
-        #             self.response.write('<p align = "center"> %s </p'%song.spotify_html)
-        #             #self.response.write(str(song.spotify_html) + "<br>")
-        #     else:
-        #         self.response.write("Nope")
-        # if genre and mood:
-        #     genre_key = Genre.query(Genre.name == genre).get().key
-        #     filtered_answer = Playlist.query().filter(Playlist.genre == genre_key and Playlist.mood == mood).fetch()
-        #     if filtered_answer:
-        #         for playlist in filtered_answer:
-        #             self.response.write('<p align = "center">%s</p>'%playlist.spotify_html)
         mood = self.request.get('mood')
         genre = self.request.get('genre')
         if genre and mood:
