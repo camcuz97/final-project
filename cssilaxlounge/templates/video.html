@@ -31,7 +31,9 @@
   </form>
 </div>
 <div id="search-results">
-  YouTube Produced Videos
+  {% for vid in video_html %}
+      <p>{{vid}}</p>
+  {% endfor %}
 </div>
 </body>
 </html>
