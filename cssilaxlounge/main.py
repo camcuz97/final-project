@@ -66,10 +66,10 @@ class HomeHandler(webapp2.RequestHandler):
 
         home_page_template = jinja_environment.get_template('templates/home.html')
         user = users.get_current_user()
-        my_vars = {'user': user.nickname()}
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
         else:
+            my_vars = {'user': user.nickname()}
             main_page_template = jinja_environment.get_template('templates/home.html')
             self.response.out.write(home_page_template.render(my_vars))
             current_user = User(user_name = user.nickname(), current_user_id = user.user_id())
