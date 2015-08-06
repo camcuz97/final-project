@@ -246,6 +246,11 @@ class MusicHandler(webapp2.RequestHandler):
         else:
             self.response.out.write(music_page_template.render())
 
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+        about_page_template = jinja_environment.get_template('templates/about.html')
+        self.response.out.write(about_page_template.render())
+
 
 
 app = webapp2.WSGIApplication([
@@ -253,5 +258,6 @@ app = webapp2.WSGIApplication([
     ('/', HomeHandler),
     ('/music', MusicHandler),
     ('/video', VideoHandler),
-    ('/relax', RelaxHandler)
+    ('/relax', RelaxHandler),
+    ('/about', AboutHandler)
 ], debug=True) #DON'T FORGET TO SWITCH TO FALSE AT THE END
