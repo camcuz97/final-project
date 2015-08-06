@@ -65,10 +65,10 @@ class HomeHandler(webapp2.RequestHandler):
 
         home_page_template = jinja_environment.get_template('templates/home.html')
         user = users.get_current_user()
-        my_vars = {'user': user.nickname()}
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
         else:
+            my_vars = {'user': user.nickname()}
             main_page_template = jinja_environment.get_template('templates/home.html')
             self.response.out.write(home_page_template.render(my_vars))
             current_user = User(user_name = user.nickname(), current_user_id = user.user_id())
@@ -182,19 +182,19 @@ class RelaxHandler(webapp2.RequestHandler):
     def get(self):
         relax_page_template = jinja_environment.get_template('templates/relax.html')
         self.response.out.write(relax_page_template.render())
-        noise = self.request.get('noise')
-        if noise:
-            noise_key = NoiseIdentifier.query(NoiseIdentifier.identifier == noise).get().key
-            logging.info("Keyword:" + str(noise_key))
-            filtered_noise_answer = RelaxNoise.query().filter(RelaxNoise.identifier == noise_key).fetch()
-            logging.info("Answers: "  + str(filtered_noise_answer))
-            if filtered_noise_answer:
-                for noise in filtered_noise_answer:
-                    self.response.write("<p><strong>""%s""</strong></p>"%noise.name)
-                    self.response.write("<br/>")
-                    self.response.write("%s"%noise.corresponding_url)
-            else:
-                self.response.write("No corresponding video")
+        # noise = self.request.get('noise')
+        # if noise:
+        #     noise_key = NoiseIdentifier.query(NoiseIdentifier.identifier == noise).get().key
+        #     #logging.info("Keyword:" + str(noise_key))
+        #     filtered_noise_answer = RelaxNoise.query().filter(RelaxNoise.identifier == noise_key).fetch()
+        #     #logging.info("Answers: "  + str(filtered_noise_answer))
+        #     if filtered_noise_answer:
+        #         for noise in filtered_noise_answer:
+        #             self.response.write("<p><strong>""%s""</strong></p>"%noise.name)
+        #             self.response.write("<br/>")
+        #             self.response.write("%s"%noise.corresponding_url)
+        #     else:
+        #         self.response.write("No corresponding video")
 
 class VideoHandler(webapp2.RequestHandler):
     def get(self):
