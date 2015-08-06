@@ -6,3 +6,11 @@ body#background {
   background-size: 100% 100%;
   background-position: 0px 0px;
 }
+h1 {
+  margin-top: 10px;
+  font-size: 50px;
+  font-family: 'Cinzel', serif;
+}
+#logo {
+  margin-top: -40px;
+}
