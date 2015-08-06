@@ -12,5 +12,10 @@ h1 {
   font-family: 'Droid Serif', serif;
 }
 #logo {
+  display: none;
   margin-top: -40px;
+  height:500px;
+  width: 550px;
+  position: relative;
+  bottom: -30px;
 }
