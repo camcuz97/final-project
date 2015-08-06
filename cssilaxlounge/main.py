@@ -88,49 +88,49 @@ class HomeHandler(webapp2.RequestHandler):
                 keyword5.put()
                 keyword6.put()
 
-                funny_video_1 = Video(name = "funny game show answers", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R7ghDhpCLKM" frameborder="0" allowfullscreen></iframe>')
-                funny_video_2 = Video(name = "America's Funniest Home Videos Compilation", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/W4wb5r-FNTc" frameborder="0" allowfullscreen></iframe>')
-                funny_video_3 = Video(name = "April Fools Prank", keyword = [keyword1.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/R9rymEWJX38" frameborder="0" allowfullscreen></iframe>')
+                funny_video_1 = Video(name = "funny game show answers", keyword = [keyword1.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/R7ghDhpCLKM" frameborder="0" allowfullscreen></iframe>')
+                funny_video_2 = Video(name = "America's Funniest Home Videos Compilation", keyword = [keyword1.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/W4wb5r-FNTc" frameborder="0" allowfullscreen></iframe>')
+                funny_video_3 = Video(name = "April Fools Prank", keyword = [keyword1.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/R9rymEWJX38" frameborder="0" allowfullscreen></iframe>')
 
                 funny_video_1.put()
                 funny_video_2.put()
                 funny_video_3.put()
 
-                intriguing_video_1 = Video(name = "intriguing facts about the human brain", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/XQKDd_SjMJA" frameborder="0" allowfullscreen></iframe>')
-                intriguing_video_2 = Video(name = "10 obscure intriguing facts", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/f8sW_tv0WRI" frameborder="0" allowfullscreen></iframe>')
-                intriguing_video_3 = Video(name = "intriguing people", keyword = [keyword2.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/Up5eLfjdjEM" frameborder="0" allowfullscreen></iframe>')
+                intriguing_video_1 = Video(name = "intriguing facts about the human brain", keyword = [keyword2.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/XQKDd_SjMJA" frameborder="0" allowfullscreen></iframe>')
+                intriguing_video_2 = Video(name = "10 obscure intriguing facts", keyword = [keyword2.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/f8sW_tv0WRI" frameborder="0" allowfullscreen></iframe>')
+                intriguing_video_3 = Video(name = "intriguing people", keyword = [keyword2.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/Up5eLfjdjEM" frameborder="0" allowfullscreen></iframe>')
 
                 intriguing_video_1.put()
                 intriguing_video_2.put()
                 intriguing_video_3.put()
 
-                relaxing_video_1 = Video(name = "relaxing kaleidoscope", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/q2fIWB8o-bs" frameborder="0" allowfullscreen></iframe>')
-                relaxing_video_2 = Video(name = "relaxing nature", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/kkbmijuAvlM" frameborder="0" allowfullscreen></iframe>')
-                relaxing_video_3 = Video(name = "relaxing stargazing", keyword = [keyword3.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/HXT38GS1Hrw" frameborder="0" allowfullscreen></iframe>')
+                relaxing_video_1 = Video(name = "relaxing kaleidoscope", keyword = [keyword3.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/q2fIWB8o-bs" frameborder="0" allowfullscreen></iframe>')
+                relaxing_video_2 = Video(name = "relaxing nature", keyword = [keyword3.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/kkbmijuAvlM" frameborder="0" allowfullscreen></iframe>')
+                relaxing_video_3 = Video(name = "relaxing stargazing", keyword = [keyword3.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/HXT38GS1Hrw" frameborder="0" allowfullscreen></iframe>')
 
                 relaxing_video_1.put()
                 relaxing_video_2.put()
                 relaxing_video_3.put()
 
-                educational_video_1 = Video(name = "Pluto's First Encounter", keyword = [keyword4.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/rYg7rMgJuNQ" frameborder="0" allowfullscreen></iframe>')
-                educational_video_2 = Video(name = "Navy Seals Documentary", keyword = [keyword4.key], corresponding_html = '<iframe width="420" height="315" src="https://www.youtube.com/embed/yAgKnwJQYUs" frameborder="0" allowfullscreen></iframe>')
-                educational_video_3 = Video(name = "Jane Goodall on Chimpanzee's", keyword = [keyword4.key], corresponding_html = '<iframe width="420" height="315" src="https://www.youtube.com/embed/LKyrLFyOi04" frameborder="0" allowfullscreen></iframe>')
+                educational_video_1 = Video(name = "Pluto's First Encounter", keyword = [keyword4.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/rYg7rMgJuNQ" frameborder="0" allowfullscreen></iframe>')
+                educational_video_2 = Video(name = "Navy Seals Documentary", keyword = [keyword4.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/yAgKnwJQYUs" frameborder="0" allowfullscreen></iframe>')
+                educational_video_3 = Video(name = "Jane Goodall on Chimpanzee's", keyword = [keyword4.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/LKyrLFyOi04" frameborder="0" allowfullscreen></iframe>')
 
                 educational_video_1.put()
                 educational_video_2.put()
                 educational_video_3.put()
 
-                ted_video_1 = Video(name = "Temple Grandin on Autism Brains", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/fn_9f5x0f1Q" frameborder="0" allowfullscreen></iframe>')
-                ted_video_2 = Video(name = "Larry Page on Where Google is going", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/mArrNRWQEso" frameborder="0" allowfullscreen></iframe>')
-                ted_video_3 = Video(name = "Gavin Schmidt on the Environment", keyword = [keyword5.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/JrJJxn-gCdo" frameborder="0" allowfullscreen></iframe>')
+                ted_video_1 = Video(name = "Temple Grandin on Autism Brains", keyword = [keyword5.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/fn_9f5x0f1Q" frameborder="0" allowfullscreen></iframe>')
+                ted_video_2 = Video(name = "Larry Page on Where Google is going", keyword = [keyword5.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/mArrNRWQEso" frameborder="0" allowfullscreen></iframe>')
+                ted_video_3 = Video(name = "Gavin Schmidt on the Environment", keyword = [keyword5.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/JrJJxn-gCdo" frameborder="0" allowfullscreen></iframe>')
 
                 ted_video_1.put()
                 ted_video_2.put()
                 ted_video_3.put()
 
-                fail_video_1 = Video(name = "Water sport fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/ufU7ZkAn0GI" frameborder="0" allowfullscreen></iframe>')
-                fail_video_2 = Video(name = "Track fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/iDicTJwqhl4" frameborder="0" allowfullscreen></iframe>')
-                fail_video_3 = Video(name = "Trampoline fails", keyword = [keyword6.key], corresponding_html = '<iframe width="560" height="315" src="https://www.youtube.com/embed/bFH5NdkhfVs" frameborder="0" allowfullscreen></iframe>')
+                fail_video_1 = Video(name = "Water sport fails", keyword = [keyword6.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/ufU7ZkAn0GI" frameborder="0" allowfullscreen></iframe>')
+                fail_video_2 = Video(name = "Track fails", keyword = [keyword6.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/iDicTJwqhl4" frameborder="0" allowfullscreen></iframe>')
+                fail_video_3 = Video(name = "Trampoline fails", keyword = [keyword6.key], corresponding_html = '<iframe width="350" height="150" src="https://www.youtube.com/embed/EmP2JHUTisg" frameborder="0" allowfullscreen></iframe>')
 
                 fail_video_1.put()
                 fail_video_2.put()
