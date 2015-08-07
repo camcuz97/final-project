@@ -5,3 +5,15 @@ body#background{
   background-size: 100% 100%;
   background-position: 0px 0px;
 }
+#cameron {
+  margin-left: 170px;
+  float: left;
+}
+#manny {
+  margin-right: 400px;
+}
+#jackie {
+  margin-top:-345px;
+  margin-right: 180px;
+  float: right;
+}
