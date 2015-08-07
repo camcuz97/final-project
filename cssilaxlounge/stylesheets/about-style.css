@@ -5,15 +5,80 @@ body#background{
   background-size: 100% 100%;
   background-position: 0px 0px;
 }
+
+/* Logo and the heading */
+#logo-head {
+  width: 85%;
+  margin-left: 0px;
+  margin-top: -25px;
+  border-bottom: 2px solid black;
+}
+#logo {
+  margin-top: 30px;
+  margin-left: -1000px;
+  padding-bottom: 15px;
+}
+h1 {
+  margin-bottom: 35px;
+  font-size: 80px;
+  font-family: 'Droid Serif', serif;
+  margin-left: 0px;
+  margin-top: -130px;
+}
+/* End */
+
+h2 {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  width: 85%;
+  font-size: 35px;
+  border-bottom: 2px solid black;
+}
+h3 {
+  text-decoration: underline;
+  margin-top: 10px;
+  font-size: 25px;
+}
 #cameron {
   margin-left: 170px;
+  width: 25%;
+  margin-top: -30px;
+  padding-top: 50px;
+  border-right: 2px solid black;
   float: left;
 }
 #manny {
-  margin-right: 400px;
+  padding-top: 20px;
+  margin-right: 540px;
 }
 #jackie {
-  margin-top:-345px;
-  margin-right: 180px;
+  margin-left: 880px;
+  padding-top: 50px;
+  border-left: 2px solid black;
+  margin-top:-668px;
+  float: left;
+}
+#jackie-total {
+  margin-left: -190px;
+}
+/* Info Paragraphs */
+#cameron-info {
+  margin-top: 0px;
+  text-align: justify;
+  margin-left: 60px;
+  width: 65%;
+  float: left;
+}
+#manny-info {
+  text-align: justify;
+  margin-left: 525px;
+  width: 28%;
+}
+#jackie-info {
+  margin-top: -2px;
+  text-align: justify;
+  margin-right: 250px;
+  width: 43%;
   float: right;
 }
+/* End */
