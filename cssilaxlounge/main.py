@@ -64,26 +64,27 @@ class HomeHandler(webapp2.RequestHandler):
     def get(self):
         home_page_template = jinja_environment.get_template('templates/home.html')
         user = users.get_current_user()
-        # hip_id = Genre.query(Genre.name == 'Hip-Hop').get().key.id()
-        # hip_key = ndb.Key(Genre, int(hip_id))
-        # punk_id = Genre.query(Genre.name == 'Punk').get().key.id()
-        # punk_key = ndb.Key(Genre, int(punk_id))
-        # pop_id = Genre.query(Genre.name == 'Pop').get().key.id()
-        # pop_key = ndb.Key(Genre, int(pop_id))
-        # alt_id = Genre.query(Genre.name == 'Alternative').get().key.id()
-        # alt_key = ndb.Key(Genre, int(alt_id))
-        #
-        #
-        # #ndb.Key(Genre, int())
-        #
-        # generic_hiphop = Playlist(genre = hip_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:5yolys8XG4q7YfjYGl5Lff" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
-        # generic_hiphop.put()
-        # generic_punk = Playlist(genre = punk_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:0dBTRmxyfCYFY483cve71c" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
-        # generic_punk.put()
-        # generic_alt = Playlist(genre = alt_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:2YoVrFsJPvunjHQYfM12cP" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
-        # generic_alt.put()
-        # generic_pop = Playlist(genre = pop_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:5FJXhjdILmRA2z5bvz4nzf" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
-        # generic_pop.put()
+                #Comments below added playlists later, not needed for new users
+                                    # hip_id = Genre.query(Genre.name == 'Hip-Hop').get().key.id()
+                                    # hip_key = ndb.Key(Genre, int(hip_id))
+                                    # punk_id = Genre.query(Genre.name == 'Punk').get().key.id()
+                                    # punk_key = ndb.Key(Genre, int(punk_id))
+                                    # pop_id = Genre.query(Genre.name == 'Pop').get().key.id()
+                                    # pop_key = ndb.Key(Genre, int(pop_id))
+                                    # alt_id = Genre.query(Genre.name == 'Alternative').get().key.id()
+                                    # alt_key = ndb.Key(Genre, int(alt_id))
+                                    #
+                                    #
+                                    # #ndb.Key(Genre, int())
+                                    #
+                                    # generic_hiphop = Playlist(genre = hip_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:5yolys8XG4q7YfjYGl5Lff" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+                                    # generic_hiphop.put()
+                                    # generic_punk = Playlist(genre = punk_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:0dBTRmxyfCYFY483cve71c" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+                                    # generic_punk.put()
+                                    # generic_alt = Playlist(genre = alt_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:2YoVrFsJPvunjHQYfM12cP" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+                                    # generic_alt.put()
+                                    # generic_pop = Playlist(genre = pop_key, mood = "Indifferent", spotify_html = '<iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:5FJXhjdILmRA2z5bvz4nzf" width="800" height="470" frameborder="0" allowtransparency="true"></iframe>')
+                                    # generic_pop.put()
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
         else:
@@ -210,19 +211,6 @@ class RelaxHandler(webapp2.RequestHandler):
     def get(self):
         relax_page_template = jinja_environment.get_template('templates/relax.html')
         self.response.out.write(relax_page_template.render())
-        # noise = self.request.get('noise')
-        # if noise:
-        #     noise_key = NoiseIdentifier.query(NoiseIdentifier.identifier == noise).get().key
-        #     #logging.info("Keyword:" + str(noise_key))
-        #     filtered_noise_answer = RelaxNoise.query().filter(RelaxNoise.identifier == noise_key).fetch()
-        #     #logging.info("Answers: "  + str(filtered_noise_answer))
-        #     if filtered_noise_answer:
-        #         for noise in filtered_noise_answer:
-        #             self.response.write("<p><strong>""%s""</strong></p>"%noise.name)
-        #             self.response.write("<br/>")
-        #             self.response.write("%s"%noise.corresponding_url)
-        #     else:
-        #         self.response.write("No corresponding video")
 
 class VideoHandler(webapp2.RequestHandler):
     def get(self):
@@ -242,12 +230,6 @@ class VideoHandler(webapp2.RequestHandler):
         else:
                 self.response.out.write(video_page_template.render())
 
-            #     for video in filtered_video_answer:
-            #         self.response.write("<p><strong>""%s""</strong></p>"%video.name)
-            #         self.response.write("<br/>")
-            #         self.response.write("%s"%video.corresponding_html)
-            # else:
-            #     self.response.write("No corresponding video")
 
 class MusicHandler(webapp2.RequestHandler):
     def get(self):
