@@ -92,7 +92,8 @@ class HomeHandler(webapp2.RequestHandler):
             main_page_template = jinja_environment.get_template('templates/home.html')
             self.response.out.write(home_page_template.render(my_vars))
             current_user = User(user_name = user.nickname(), current_user_id = user.user_id())
-            existing_user = User.query().filter(User.current_user_id == current_user.current_user_id).fetch()
+            existing_user = User.query().filter(User.current_user_id == current_user.current_user_id).fetch()\
+            
             if not existing_user:
                 keyword1 = Keyword(name = "funny")
                 keyword2 = Keyword(name = "intriguing")
