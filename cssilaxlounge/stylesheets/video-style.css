@@ -44,9 +44,8 @@ h3 {
   font-family: 'Droid Serif', serif;
   font-size: 25px;
 }
-#mood_option {
-  margin-top: -10px;
-  margin-left: 15px;
+div {
+  margin-left: -20px;
 }
 #user-options {
   margin-left: 100px;
