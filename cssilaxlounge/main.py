@@ -261,4 +261,4 @@ app = webapp2.WSGIApplication([
     ('/video', VideoHandler),
     ('/relax', RelaxHandler),
     ('/about', AboutHandler)
-], debug=True) #DON'T FORGET TO SWITCH TO FALSE AT THE END
+], debug=False) #DON'T FORGET TO SWITCH TO FALSE AT THE END
