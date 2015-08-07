@@ -45,6 +45,33 @@ body#background {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+#about_button {
+  margin-left: 1300px;
+  margin-top: -25px;
+  background: white;
+  background-image: -webkit-linear-gradient(top, white, grey);
+  background-image: -moz-linear-gradient(top, white, grey);
+  background-image: -ms-linear-gradient(top, white, grey);
+  background-image: -o-linear-gradient(top, white, grey);
+  background-image: linear-gradient(to bottom, white, grey);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: 'Droid Serif', serif;
+  color: black;
+  font-size: 15px;
+  padding: 5px 15px 5px 15px;
+  text-decoration: none;
+}
+#about_button:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
 #home_button {
   margin-left: 2%;
   margin-top: -30px;
